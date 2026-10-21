@@ -24,10 +24,24 @@ def showAllFileAndFolderfunction():
             print("FOLDER :", item.name)
             print("PATH :", item.resolve)
             print()
-# close here
+# end here
+
+# file create logic
+def createFile(fileName , filePath):
+       fileContent = input( "What do you want to write? Press ENTER to skip: " ) 
+       if filePath: fullPath = Path(filePath) / fileName 
+       else: fullPath = Path.cwd() / fileName
+
+       with open(fullPath , "w") as file:
+           if fileContent:
+               file.write(fileContent)
+           print(f"File created at: {fullPath.resolve()}")
+# end here
+
 
 if userInp == 1:
     showAllFileAndFolderfunction()
-
-
-
+elif userInp == 2:
+    fileName = input("Please tell your file name : ")
+    filePath = input("Please tell your file path press ENTER for current repositorie : ")
+    createFile(fileName , filePath)
