@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 currentPath = Path('.').cwd()
 print("-" * 50)
 
@@ -38,6 +39,25 @@ def createFile(fileName , filePath):
            print(f"File created at: {fullPath.resolve()}")
 # end here
 
+# read file conten logic
+def readFile(fileName):
+    try:
+        with open(fileName , "r") as file:
+            content = file.read()
+            print(content)
+    except:
+        print(f"Error: The file '{fileName}' does not exist.")
+# end here 
+
+def updateFileContent(fileName):
+    with open(fileName , "w") as file:
+        fileContent = input("type here your new content : ")
+        file.write(fileContent)
+
+def deleteFile(fileName):
+    os.remove(fileName)
+    print("File delete successfully")
+
 
 if userInp == 1:
     showAllFileAndFolderfunction()
@@ -45,3 +65,12 @@ elif userInp == 2:
     fileName = input("Please tell your file name : ")
     filePath = input("Please tell your file path press ENTER for current repositorie : ")
     createFile(fileName , filePath)
+elif userInp == 3:
+    fileName = input("Enter your file name : ")
+    readFile(fileName)
+elif userInp == 4:
+    fileName = input("file name for updating content : ")
+    updateFileContent(fileName)
+elif userInp == 5:
+    fileName = input("please enter your file name for deleting a file : ")
+    deleteFile(fileName)
